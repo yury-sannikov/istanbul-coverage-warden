@@ -22,6 +22,6 @@ If you have ready binarry, just copy it to Jenkins. It should not require any de
 https://golang.org/doc/install
 
 ### Build package
-go get -u https://github.com/Fonteva/istanbul-coverage-warden
+go get -u github.com/Fonteva/istanbul-coverage-warden
 
 It should download and build binary
