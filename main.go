@@ -24,19 +24,3 @@ func main() {
 		}
 	}
 }
-
-// func compare(previousCoberturaData []xmltools.CoberturaClass, newCoberturaMap coberturaClassMap) bool {
-// 	var result = true
-// 	for _, item := range previousCoberturaData {
-// 		newItem, found := newCoberturaMap[item.FileName]
-// 		if !found {
-// 			fmt.Println("Unable to find coverage infrormation for ", item.FileName)
-// 			continue
-// 		}
-// 		if item.LineRate > newItem.LineRate {
-// 			fmt.Printf("Code coverage dropped for %s from %.2f%% to %.2f%%\n", item.FileName, item.LineRate*100.0, newItem.LineRate*100.0)
-// 			result = false
-// 		}
-// 	}
-// 	return result
-// }
