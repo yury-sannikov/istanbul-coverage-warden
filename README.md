@@ -1,17 +1,6 @@
 # istanbul-coverage-warden
 Watch for source code coverage growth
 
-commands:
-
-copy [branch-name] [S3 bucket]
-
-Copy coverage files to S3 bucket for later chech.
-
-check [destination-branch] [S3 bucket] [coverage.xml]
-
-check against copied coverage, fail build if coverage drop
-
-
 # Why?
 We are lazy, getting older, forget thing and sometimes hate unit tests :-) This tool aimed to help us not to forget improve code coverage for a new functionality we add.
 
