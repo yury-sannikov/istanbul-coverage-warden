@@ -25,6 +25,8 @@ type coberturaClassMap map[string]xmltools.CoberturaClass
 
 const _NotFoundError = "NoSuchKey"
 
+const _DropToleranceRate = -0.008
+
 // Execute copy code coverate to S3 bucket
 func (opts *CheckCommand) Execute(args []string) error {
 
@@ -103,9 +105,14 @@ func compare(previousCoberturaData []xmltools.CoberturaClass, newCoberturaMap co
 			fmt.Println("Unable to find coverage infrormation for ", item.FileName)
 			continue
 		}
-		if item.LineRate > newItem.LineRate {
-			fmt.Printf("Code coverage dropped for %s from %.2f%% to %.2f%%\n", item.FileName, item.LineRate*100.0, newItem.LineRate*100.0)
-			result = false
+		rateDiff := newItem.LineRate - item.LineRate
+		if rateDiff < 0.0 {
+			if _DropToleranceRate > rateDiff {
+				fmt.Printf("Code coverage dropped for %s from %.2f%% to %.2f%%\n", item.FileName, item.LineRate*100.0, newItem.LineRate*100.0)
+				result = false
+			} else {
+				fmt.Printf("Insignificant code coverage dropped for %s from %.2f%% to %.2f%%\n", item.FileName, item.LineRate*100.0, newItem.LineRate*100.0)
+			}
 		}
 	}
 	return result
